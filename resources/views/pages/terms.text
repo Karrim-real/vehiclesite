@@ -1,0 +1,11 @@
+    $query = Products::query();
+
+    if ($request->has('categories')) {
+        $query->whereIn('category_id',explode(',',$request->get('categories')));
+    }
+
+    if ($request->has('subcategories') && $request->has('categories')){
+        $query->whereIn('subcategory_id',explode(',',$request->get('subcategories')));
+    }
+
+    return $query->get();
