@@ -27,20 +27,20 @@
                   <div class="tab-pane active" id="tabs-1" role="tabpanel">
                      <div class="hero__tab__form">
                         <span style="font-weight: bold;">Find Your Dream Car</span>
-                        <form id="resetForm" action="{{ url('my-search') }}" method="POST">
-                           @csrf
+                        <form id="resetForm" action="{{ route('searchcar') }}" method="POST">
+                           {{ csrf_field() }}
                            <div class="select-list" data-live-search="true">
                               <div class="select-list-item">
-                                 <select class="form-control required " placeholder="Select Make" id="sub_model_name">
+                                 <select class="form-control required " placeholder="Select Make" id="sub_model_name" name="maker">
                             <option value="0" disabled selected>Select Make*</option>
                             @foreach($data as $make)
-                            <option  data-spy="scroll"  value="{{ $make->id }}">
+                            <option  data-spy="scroll"   value="{{ $make->id }}">
                                 {{ ucfirst($make->name) }}</option>
                             @endforeach
                         </select>
                               </div>
                               <div class="select-list-item">
-                                 <select class="form-control required" placeholder="Select Model" id="model">
+                                 <select class="form-control required" placeholder="Select Model" id="model" name="model">
                              </select>
 
                               </div>
@@ -50,7 +50,7 @@
                                     <option data-display="Year" disabled selected>Select Year</option>
 
                                     @foreach($years as $year)
-                                       <option value="{{ $year}}">{{ $year}}</option>
+                                       <option value="{{ $year}}" name="year">{{ $year}}</option>
                                     @endforeach
 
                                  </select>

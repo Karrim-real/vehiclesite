@@ -100,7 +100,21 @@ class PagesController extends Controller
 
     public function getData(Request $request)
     {
-        $request->all();
+        // dd($request->all());
         return view('my-search');
+    }
+
+    public function searchCar(Request $request)
+    {
+        // dd($request->all());
+        $maker_id = $request->maker;
+        $model_id = $request->model;
+        $year = $request->year;
+        $vehicles = $result = Vehicle::query()->where('makes_id', 'LIKE',"%".$maker_id."%")
+        ->orWhere('models_id', 'LIKE', "%". $model_id. "%")->orWhere('year', $year)
+        ->get();
+        $data = DB::table('makes')->get();
+        return view('all-vehicles' , compact('vehicles', 'data'));
+
     }
 }

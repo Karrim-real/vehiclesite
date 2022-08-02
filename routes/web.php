@@ -61,7 +61,8 @@ Route::group(['middleware' => ['auth']], function() {
 
   Route::get('/', [App\Http\Controllers\PagesController::class, 'index']);
   Route::get('GetModelAgainstMakeEdit/{id}', [App\Http\Controllers\PagesController::class, 'GetModelAgainstMakeEdit']);
-  Route::POST('/my-search', [App\Http\Controllers\PagesController::class, 'getData'])->name('my-search');
+  Route::post('/my-search', [App\Http\Controllers\PagesController::class, 'getData'])->name('my-search');
+  Route::post('/searchcar', [App\Http\Controllers\PagesController::class, 'searchCar'])->name('searchcar');
 
   Route::get('/about-us', [App\Http\Controllers\PagesController::class, 'about']);
   Route::get('/contact-us', [App\Http\Controllers\PagesController::class, 'contact']);
