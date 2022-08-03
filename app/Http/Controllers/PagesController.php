@@ -110,10 +110,13 @@ class PagesController extends Controller
         $maker_id = $request->maker;
         $model_id = $request->model;
         $year = $request->year;
-        $vehicles = $result = Vehicle::query()->where('makes_id', 'LIKE',"%".$maker_id."%")
-        ->orWhere('models_id', 'LIKE', "%". $model_id. "%")->orWhere('year', $year)
+        $vehicles = $result = Vehicle::query()->where('makes_id', $maker_id)
+        ->Where('models_id', $model_id)->Where('year', $year)
         ->get();
+
+        dd($vehicles);
         $data = DB::table('makes')->get();
+        //Send the search result to any page you want to use it
         return view('all-vehicles' , compact('vehicles', 'data'));
 
     }
